@@ -1,0 +1,149 @@
+ion-content {
+  --background: linear-gradient(135deg, var(--ion-color-secondary) 0%, var(--ion-color-tertiary) 100%);
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 20px;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+
+  .app-logo {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: fadeInDown 0.8s ease-in-out;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    animation: fadeInDown 0.8s ease-in-out 0.2s both;
+  }
+
+  p {
+    font-size: 16px;
+    opacity: 0.9;
+    animation: fadeInDown 0.8s ease-in-out 0.4s both;
+  }
+}
+
+.register-card {
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  animation: fadeInUp 0.8s ease-in-out 0.3s both;
+
+  ion-card-header {
+    text-align: center;
+    padding-bottom: 0;
+
+    ion-card-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--ion-color-primary);
+    }
+  }
+
+  ion-card-content {
+    padding: 20px;
+  }
+}
+
+.input-item {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+
+  ion-icon {
+    margin-right: 12px;
+  }
+
+  ion-input {
+    --padding-start: 8px;
+  }
+}
+
+.register-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  --border-radius: 8px;
+  font-weight: 600;
+  text-transform: none;
+  font-size: 16px;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+
+  .link-text {
+    color: var(--ion-color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 576px) {
+  .logo-section {
+    .app-logo {
+      font-size: 60px;
+    }
+
+    h1 {
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .register-card {
+    ion-card-header {
+      ion-card-title {
+        font-size: 20px;
+      }
+    }
+  }
+}

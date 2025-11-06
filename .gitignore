@@ -1,0 +1,24 @@
+# Node / Angular
+node_modules/
+dist/
+www/
+coverage/
+tmp/
+.cache/
+.eslintcache
+
+# Ionic / Capacitor
+android/
+ios/
+plugins/
+.idea/
+.vscode/
+
+# Builds
+*.log
+*.tgz
+*.zip
+
+# Env
+.env
+.env.*

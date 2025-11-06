@@ -1,0 +1,144 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="danger">
+    <ion-title>Admin Dashboard</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="admin-container">
+    <!-- Admin Profile Card -->
+    <ion-card class="admin-profile-card">
+      <ion-card-content>
+        <div class="admin-header">
+          <div class="admin-info">
+            <ion-icon name="shield-checkmark-outline" class="admin-icon"></ion-icon>
+            <div>
+              <h2>{{ currentUser?.name }}</h2>
+              <p>{{ currentUser?.email }}</p>
+              <ion-chip color="danger">
+                <ion-icon name="shield-checkmark-outline"></ion-icon>
+                <ion-label>Administrator</ion-label>
+              </ion-chip>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Stats Card -->
+    <ion-card class="stats-card">
+      <ion-card-content>
+        <div class="stat-item">
+          <ion-icon name="people-outline" color="primary"></ion-icon>
+          <div class="stat-info">
+            <h3>{{ users.length }}</h3>
+            <p>Total Users</p>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <ion-icon name="shield-checkmark-outline" color="danger"></ion-icon>
+          <div class="stat-info">
+            <h3>{{ getAdminCount() }}</h3>
+            <p>Admins</p>
+          </div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <ion-icon name="person-outline" color="success"></ion-icon>
+          <div class="stat-info">
+            <h3>{{ getUserCount() }}</h3>
+            <p>Users</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Search Bar -->
+    <ion-card class="search-card">
+      <ion-card-content>
+        <ion-searchbar
+          [(ngModel)]="searchTerm"
+          (ionInput)="handleSearch($event)"
+          placeholder="Search users by name, email, or role"
+          animated="true"
+        ></ion-searchbar>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Users List -->
+    <ion-card class="users-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="people-outline"></ion-icon>
+          User Management
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list *ngIf="filteredUsers.length > 0; else noUsers">
+          <ion-item *ngFor="let user of filteredUsers" lines="full" class="user-item">
+            <ion-avatar slot="start" class="user-avatar">
+              <div class="avatar-initials" [class.admin-avatar]="user.role === 'admin'">
+                {{ getInitials(user.name) }}
+              </div>
+            </ion-avatar>
+
+            <ion-label>
+              <h2>{{ user.name }}</h2>
+              <p>
+                <ion-icon name="mail-outline"></ion-icon>
+                {{ user.email }}
+              </p>
+              <ion-chip [color]="getRoleColor(user.role)" size="small">
+                <ion-label>{{ user.role }}</ion-label>
+              </ion-chip>
+            </ion-label>
+
+            <div slot="end" class="action-buttons">
+              <ion-button fill="clear" color="primary" (click)="editUser(user)">
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button
+                fill="clear"
+                color="danger"
+                (click)="deleteUser(user)"
+                [disabled]="user.id === currentUser?.id">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </ion-item>
+        </ion-list>
+
+        <ng-template #noUsers>
+          <div class="no-users">
+            <ion-icon name="people-outline"></ion-icon>
+            <h3>No users found</h3>
+            <p>Try adjusting your search criteria</p>
+          </div>
+        </ng-template>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Floating Action Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="createUser()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

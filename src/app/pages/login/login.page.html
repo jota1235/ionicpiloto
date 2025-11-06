@@ -1,0 +1,80 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="login-container">
+    <div class="logo-section">
+      <ion-icon name="log-in-outline" class="app-logo"></ion-icon>
+      <h1>Welcome Back</h1>
+      <p>Sign in to continue</p>
+    </div>
+
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title>Login to Your Account</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form (ngSubmit)="login()">
+          <ion-item lines="full" class="input-item">
+            <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
+            <ion-input
+              type="email"
+              placeholder="Email"
+              [(ngModel)]="credentials.email"
+              name="email"
+              required
+              autocomplete="email"
+            ></ion-input>
+          </ion-item>
+
+          <ion-item lines="full" class="input-item">
+            <ion-icon name="lock-closed-outline" slot="start" color="primary"></ion-icon>
+            <ion-input
+              type="password"
+              placeholder="Password"
+              [(ngModel)]="credentials.password"
+              name="password"
+              required
+              autocomplete="current-password"
+            ></ion-input>
+          </ion-item>
+
+          <ion-button
+            expand="block"
+            type="submit"
+            class="login-button"
+            size="large"
+          >
+            <ion-icon name="log-in-outline" slot="start"></ion-icon>
+            Login
+          </ion-button>
+        </form>
+
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <ion-button
+          expand="block"
+          fill="outline"
+          routerLink="/register"
+          size="large"
+        >
+          <ion-icon name="person-add-outline" slot="start"></ion-icon>
+          Create Account
+        </ion-button>
+
+        <div class="demo-credentials">
+          <ion-text color="medium">
+            <p><strong>Demo Credentials:</strong></p>
+            <p>Admin: admin@test.com / admin123</p>
+          </ion-text>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
