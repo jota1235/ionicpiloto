@@ -6,10 +6,21 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
+    "build:dev": "ng build --configuration development",
+    "build:prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "ionic:serve": "ionic serve",
+    "ionic:build": "ionic build --prod",
+    "cap:sync": "npx cap sync",
+    "cap:sync:android": "npx cap sync android",
+    "cap:copy": "npx cap copy",
+    "cap:copy:android": "npx cap copy android",
+    "cap:open:android": "npx cap open android",
+    "android:build": "npm run build:prod && npx cap sync android",
+    "android:release": "cd android && ./gradlew assembleRelease && cd .."
   },
   "private": true,
   "dependencies": {

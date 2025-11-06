@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ionicpiloto</string>
+    <string name="title_activity_main">ionicpiloto</string>
+    <string name="package_name">com.jafet.ionicpiloto</string>
+    <string name="custom_url_scheme">com.jafet.ionicpiloto</string>
+</resources>

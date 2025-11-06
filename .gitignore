@@ -6,19 +6,42 @@ coverage/
 tmp/
 .cache/
 .eslintcache
+.angular/
+.npm/
 
 # Ionic / Capacitor
-android/
+# ⚠️ IMPORTANTE: NO ignorar android/ para AppFlow
+# android/ - Esta carpeta es necesaria para AppFlow
 ios/
 plugins/
 .idea/
-.vscode/
+
+# VSCode settings (opcional: comentar si quieres compartir configuración)
+# .vscode/
 
 # Builds
 *.log
 *.tgz
 *.zip
 
+# Android specific (archivos generados)
+android/app/build/
+android/app/release/
+android/.gradle/
+android/build/
+android/local.properties
+android/.idea/
+*.iml
+
+# iOS specific
+ios/App/Pods/
+ios/App/build/
+ios/App/.build/
+
 # Env
 .env
 .env.*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
